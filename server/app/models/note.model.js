@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
     brf: String,
-    lghAntal: Number
+    lghAntal: Number,
+    orgNr: Number,
+    grundat: Number,
+    kommun: String
 }, {
     timestamps: true
 });

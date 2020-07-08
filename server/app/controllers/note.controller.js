@@ -13,6 +13,9 @@ exports.create = (req, res) => {
     const note = new Note({
         brf: req.body.brf || "untitled brf",
         lghAntal: req.body.lghAntal,
+        orgNr: req.body.orgNr,
+        grundat: req.body.grundat,
+        kommun: req.body.kommun,
     });
 
     // Save Note in the database
@@ -63,7 +66,7 @@ exports.findOne = (req, res) => {
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
     // Validate Request
-    if (!req.body.content) {
+    if (!req.body.brf) {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
