@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
-const NoteSchema = mongoose.Schema({
-    brf: String
+const schema = mongoose.Schema({
+    brf: String,
+    lghAntal: Number
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model('Note', NoteSchema);
+module.exports = mongoose.model('Note', schema);

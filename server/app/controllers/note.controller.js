@@ -12,6 +12,7 @@ exports.create = (req, res) => {
     // Create a Note
     const note = new Note({
         brf: req.body.brf || "untitled brf",
+        lghAntal: req.body.lghAntal,
     });
 
     // Save Note in the database
