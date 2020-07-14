@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const schema = mongoose.Schema({
+const schema = Schema({
     brf: String,
     lghAntal: Number,
     orgNr: Number,
