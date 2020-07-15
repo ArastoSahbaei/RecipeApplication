@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const middlewares = require('./middleware');
 const dbConfig = require('./config/database.config.js');
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-mongoose.connect(dbConfig.url, {
+mongoose.connect(dbConfig.DATABASE_URL, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");
