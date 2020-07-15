@@ -10,7 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 mongoose.connect(dbConfig.DATABASE_URL, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log("Successfully connected to the database");
 }).catch(err => {
@@ -26,6 +27,7 @@ require('./app/routes/note.routes.js')(app);
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+    console.log(`Server is listening on http://localhost:${port}`);
 });
