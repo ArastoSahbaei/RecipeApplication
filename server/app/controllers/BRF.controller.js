@@ -1,15 +1,12 @@
 const BRF = require('../models/BRF.model.js');
 
-// Create and Save a new BRF
 exports.create = (req, res) => {
-    // Validate request
     if (!req.body.brf) {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
     }
 
-    // Create a BRF
     const brf = new BRF({
         brf: req.body.brf || "untitled brf",
         lghAntal: req.body.lghAntal,
@@ -18,7 +15,6 @@ exports.create = (req, res) => {
         kommun: req.body.kommun,
     });
 
-    // Save BRF in the database
     brf.save()
         .then(data => {
             res.send(data);
@@ -29,7 +25,6 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve and return all BRF from the database.
 exports.findAll = (req, res) => {
     BRF.find()
         .then(notes => {
@@ -41,7 +36,6 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single BRF with a BRFId
 exports.findOne = (req, res) => {
     BRF.findById(req.params.noteId)
         .then(note => {
@@ -63,16 +57,13 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Update a BRF identified by the BRFId in the request
 exports.update = (req, res) => {
-    // Validate Request
     if (!req.body.brf) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            message: "BRF content can not be empty"
         });
     }
 
-    // Find note and update it with the request body
     BRF.findByIdAndUpdate(req.params.noteId, {
         title: req.body.title || "Untitled Note",
         content: req.body.content
@@ -80,23 +71,22 @@ exports.update = (req, res) => {
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "BRF not found with id " + req.params.noteId
                 });
             }
             res.send(note);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "BRF not found with id " + req.params.noteId
                 });
             }
             return res.status(500).send({
-                message: "Error updating note with id " + req.params.noteId
+                message: "Error updating BRF with id " + req.params.noteId
             });
         });
 };
 
-// Delete a BRF with the specified BRFId in the request
 exports.delete = (req, res) => {
     BRF.findByIdAndRemove(req.params.noteId)
         .then(note => {
