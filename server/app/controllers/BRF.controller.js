@@ -1,6 +1,6 @@
-const Note = require('../models/BRF.js');
+const BRF = require('../models/BRF.model.js');
 
-// Create and Save a new Note
+// Create and Save a new BRF
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.brf) {
@@ -9,8 +9,8 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a Note
-    const note = new Note({
+    // Create a BRF
+    const brf = new BRF({
         brf: req.body.brf || "untitled brf",
         lghAntal: req.body.lghAntal,
         orgNr: req.body.orgNr,
@@ -18,8 +18,8 @@ exports.create = (req, res) => {
         kommun: req.body.kommun,
     });
 
-    // Save Note in the database
-    note.save()
+    // Save BRF in the database
+    brf.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
@@ -29,9 +29,9 @@ exports.create = (req, res) => {
         });
 };
 
-// Retrieve and return all notes from the database.
+// Retrieve and return all BRF from the database.
 exports.findAll = (req, res) => {
-    Note.find()
+    BRF.find()
         .then(notes => {
             res.send(notes);
         }).catch(err => {
@@ -41,9 +41,9 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single note with a noteId
+// Find a single BRF with a BRFId
 exports.findOne = (req, res) => {
-    Note.findById(req.params.noteId)
+    BRF.findById(req.params.noteId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
@@ -63,7 +63,7 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Update a note identified by the noteId in the request
+// Update a BRF identified by the BRFId in the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body.brf) {
@@ -73,7 +73,7 @@ exports.update = (req, res) => {
     }
 
     // Find note and update it with the request body
-    Note.findByIdAndUpdate(req.params.noteId, {
+    BRF.findByIdAndUpdate(req.params.noteId, {
         title: req.body.title || "Untitled Note",
         content: req.body.content
     }, { new: true })
@@ -96,9 +96,9 @@ exports.update = (req, res) => {
         });
 };
 
-// Delete a note with the specified noteId in the request
+// Delete a BRF with the specified BRFId in the request
 exports.delete = (req, res) => {
-    Note.findByIdAndRemove(req.params.noteId)
+    BRF.findByIdAndRemove(req.params.noteId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
