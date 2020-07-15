@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
-
+const middlewares = require('./middlewares');
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
 
 // Require Notes routes
 require('./app/routes/note.routes.js')(app);
+
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
 
 // listen for requests
 app.listen(3000, () => {
