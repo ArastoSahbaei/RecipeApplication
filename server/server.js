@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     res.json({ "message": "brfSverige Application" });
 });
 
-require('./app/routes/note.routes.js')(app);
+require('./app/routes/BRF.routes.js')(app);
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
