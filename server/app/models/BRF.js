@@ -11,4 +11,4 @@ const schema = Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Note', schema);
+module.exports = mongoose.model('brf', schema);
