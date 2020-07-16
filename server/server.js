@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 require('./app/routes/BRF.routes.js')(app);
+require('./app/routes/Users.routes.js')(app);
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 

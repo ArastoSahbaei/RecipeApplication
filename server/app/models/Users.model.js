@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const secret = require('../config').secret;
-const uniqueValidator = require('mongoose-unique-validator');
+/* const secret = require('../../config').secret; */
+/* const uniqueValidator = require('mongoose-unique-validator'); */
 
 const UserSchema = Schema({
     username: {
         type: String,
         unique: true,
         lowercase: true,
-        required: [true, "can't be blank"],
+            required: [true, "can't be blank"],
         match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
         index: true
     },
@@ -28,19 +28,19 @@ const UserSchema = Schema({
     salt: String
 }, { timestamps: true });
 
-UserSchema.plugin(uniqueValidator, { message: 'is already taken.' });
+/* UserSchema.plugin(uniqueValidator, { message: 'is already taken.' }); */
 
-UserSchema.methods.setPassword = function (password) {
+/* UserSchema.methods.setPassword = function (password) {
     this.salt = crypto.randomBytes(16).toString('hex');
     this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
-};
+}; */
 
-UserSchema.methods.validPassword = function (password) {
+/* UserSchema.methods.validPassword = function (password) {
     const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
     return this.hash === hash;
-};
+}; */
 
-UserSchema.methods.generateJWT = function () {
+/* UserSchema.methods.generateJWT = function () {
     const today = new Date();
     const exp = new Date(today);
     exp.setDate(today.getDate(), 60);
@@ -60,6 +60,6 @@ UserSchema.methods.toAuthJSON = function () {
         bio: this.bio,
         image: this.image
     };
-};
+}; */
 
-mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
