@@ -1,3 +1,17 @@
 
 
 POST http://localhost:3001/users
+
+###
+
+POST http://localhost:3001/user/
+Content-Type: application/json
+
+{
+	"username": "arastor",
+	"email": "arasto.sahbaei@gmrail.com",
+	"bio": "1337",
+	"image": "1918",
+	"hash": "Göteborg",
+	"salt": "Göteborg"
+}

@@ -10,7 +10,7 @@ const UserSchema = Schema({
         type: String,
         unique: true,
         lowercase: true,
-            required: [true, "can't be blank"],
+        required: [true, "can't be blank"],
         match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
         index: true
     },
@@ -22,6 +22,7 @@ const UserSchema = Schema({
         match: [/\S+@\S+\.\S+/, 'is invalid'],
         index: true
     },
+    password: String,
     bio: String,
     image: String,
     hash: String,
