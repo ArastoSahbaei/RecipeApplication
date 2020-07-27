@@ -1,18 +1,9 @@
 module.exports = (app) => {
-    const notes = require('../controllers/BRF.controller.js');
+    const brfController = require('../controllers/BRF.controller.js');
+    app.post('/notes', brfController.create);
+    app.get('/notes', brfController.findAll);
+    app.get('/notes/:noteId', brfController.findOne);
+    app.put('/notes/:noteId', brfController.update);
+    app.delete('/notes/:noteId', brfController.delete);
 
-    // Create a new Note
-    app.post('/notes', notes.create);
-
-    // Retrieve all Notes
-    app.get('/notes', notes.findAll);
-
-    // Retrieve a single Note with noteId
-    app.get('/notes/:noteId', notes.findOne);
-
-    // Update a Note with noteId
-    app.put('/notes/:noteId', notes.update);
-
-    // Delete a Note with noteId
-    app.delete('/notes/:noteId', notes.delete);
 }

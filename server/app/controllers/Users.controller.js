@@ -35,7 +35,7 @@ exports.findAll = (req, res) => {
             res.send(notes);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving notes."
+                message: err.message || "Some error occurred while retrieving User."
             });
         });
 };
@@ -49,7 +49,7 @@ exports.login = async (req, res) => {
     ]
     const user = users.find(user => user.username === req.body.username)
     if (user === null) {
-        return res.status(400).send('Cannot find user')
+        return res.status(400).send('Cannot find User')
     }
     try {
         if (await bcrypt.compare(req.body.password, user.password)) {

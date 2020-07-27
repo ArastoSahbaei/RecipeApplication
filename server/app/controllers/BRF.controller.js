@@ -20,7 +20,7 @@ exports.create = (req, res) => {
             res.send(data);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Note."
+                message: err.message || "Some error occurred while creating the data."
             });
         });
 };
@@ -31,7 +31,7 @@ exports.findAll = (req, res) => {
             res.send(notes);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving notes."
+                message: err.message || "Some error occurred while retrieving data."
             });
         });
 };
@@ -41,18 +41,18 @@ exports.findOne = (req, res) => {
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "BRF not found with id " + req.params.noteId
                 });
             }
             res.send(note);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "BRF not found with id " + req.params.noteId
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving note with id " + req.params.noteId
+                message: "Error retrieving BRF with id " + req.params.noteId
             });
         });
 };
@@ -65,7 +65,7 @@ exports.update = (req, res) => {
     }
 
     brfModel.findByIdAndUpdate(req.params.noteId, {
-        title: req.body.title || "Untitled Note",
+        title: req.body.title || "Untitled BRF",
         content: req.body.content
     }, { new: true })
         .then(note => {
@@ -92,18 +92,18 @@ exports.delete = (req, res) => {
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "BRF not found with id " + req.params.noteId
                 });
             }
-            res.send({ message: "Note deleted successfully!" });
+            res.send({ message: "BRF deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "Note not found with id " + req.params.noteId
+                    message: "BRF not found with id " + req.params.noteId
                 });
             }
             return res.status(500).send({
-                message: "Could not delete note with id " + req.params.noteId
+                message: "Could not delete BRF with id " + req.params.noteId
             });
         });
 };
