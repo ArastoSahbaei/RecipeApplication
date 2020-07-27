@@ -6,6 +6,10 @@ const schema = Schema({
     lghAntal: Number,
     orgNr: Number,
     grundat: Number,
+    leUsers: [{
+        type: Schema.Types.ObjectId,
+        red: "User"
+    }],
     kommun: String
 }, {
     timestamps: true

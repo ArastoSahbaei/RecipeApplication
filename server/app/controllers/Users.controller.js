@@ -29,6 +29,17 @@ exports.create = async (req, res) => {
         });
 };
 
+exports.findAll = (req, res) => {
+    UserModel.find()
+        .then(notes => {
+            res.send(notes);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving notes."
+            });
+        });
+};
+
 exports.login = async (req, res) => {
     const users = [
         {

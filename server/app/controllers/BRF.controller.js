@@ -1,4 +1,4 @@
-const BRF = require('../models/BRF.model.js');
+const brfModel = require('../models/BRF.model.js');
 
 exports.create = (req, res) => {
     if (!req.body.brf) {
@@ -7,7 +7,7 @@ exports.create = (req, res) => {
         });
     }
 
-    const brf = new BRF({
+    const brf = new brfModel({
         brf: req.body.brf || "untitled brf",
         lghAntal: req.body.lghAntal,
         orgNr: req.body.orgNr,
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    BRF.find()
+    brfModel.find()
         .then(notes => {
             res.send(notes);
         }).catch(err => {
@@ -37,7 +37,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    BRF.findById(req.params.noteId)
+    brfModel.findById(req.params.noteId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
@@ -64,7 +64,7 @@ exports.update = (req, res) => {
         });
     }
 
-    BRF.findByIdAndUpdate(req.params.noteId, {
+    brfModel.findByIdAndUpdate(req.params.noteId, {
         title: req.body.title || "Untitled Note",
         content: req.body.content
     }, { new: true })
@@ -88,7 +88,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-    BRF.findByIdAndRemove(req.params.noteId)
+    brfModel.findByIdAndRemove(req.params.noteId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
