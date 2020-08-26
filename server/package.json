@@ -11,8 +11,7 @@
     "Express",
     "RestAPI",
     "MongoDB",
-    "Mongoose",
-    "Notes"
+    "Mongoose"
   ],
   "author": "Arasto Sahbaei",
   "license": "MIT",
