@@ -1,2 +1,2 @@
-# RecipieApplication
+# RecipeApplication
 tba tba tba
