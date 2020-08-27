@@ -1,18 +1,20 @@
 const brfModel = require('../models/BRF.model.js');
 
 exports.create = (req, res) => {
-    if (!req.body.brf) {
+    if (!req.body.title) {
         return res.status(400).send({
-            message: "Note content can not be empty"
+            message: "Recipe title is required"
         });
     }
 
     const brf = new brfModel({
-        brf: req.body.brf || "untitled brf",
-        lghAntal: req.body.lghAntal,
-        orgNr: req.body.orgNr,
-        grundat: req.body.grundat,
-        kommun: req.body.kommun,
+        title: req.body.title || "untitled recipe",
+        duration: req.body.duration,
+        ingrediens: req.body.ingrediens,
+        description: req.body.description,
+        originCountry: req.body.originCountry,
+        language: req.body.language,
+        views: req.body.views
     });
 
     brf.save()
