@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import service from '../shared/api/service/service'
+
 
 export const FirstComponent = () => {
+    const [data, setData] = useState("hehe")
     return (
         <div>
-            <button onClick={() => alert("WUDUP DAWG")}>FirstComponent</button>
+            <button onClick={() => console.log(data)}>okok</button>
+            <button onClick={() => service.getAll().then((response: any) => {
+                setData(response)
+            })}>
+                FirstComponent</button>
         </div>
     )
 }
