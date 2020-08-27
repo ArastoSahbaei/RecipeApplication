@@ -1,4 +1,4 @@
-const brfModel = require('../models/BRF.model.js');
+const recipeModel = require('../models/Recipe.model.js');
 
 exports.create = (req, res) => {
     if (!req.body.title) {
@@ -7,7 +7,7 @@ exports.create = (req, res) => {
         });
     }
 
-    const brf = new brfModel({
+    const recipe = new recipeModel({
         title: req.body.title || "untitled recipe",
         duration: req.body.duration,
         ingrediens: req.body.ingrediens,
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
         views: req.body.views
     });
 
-    brf.save()
+    recipe.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    brfModel.find()
+    recipeModel.find()
         .then(notes => {
             res.send(notes);
         }).catch(err => {
@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    brfModel.findById(req.params.noteId)
+    recipeModel.findById(req.params.noteId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
@@ -66,7 +66,7 @@ exports.update = (req, res) => {
         });
     }
 
-    brfModel.findByIdAndUpdate(req.params.noteId, {
+    recipeModel.findByIdAndUpdate(req.params.noteId, {
         title: req.body.title || "Untitled BRF",
         content: req.body.content
     }, { new: true })
@@ -90,7 +90,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-    brfModel.findByIdAndRemove(req.params.noteId)
+    recipeModel.findByIdAndRemove(req.params.noteId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({

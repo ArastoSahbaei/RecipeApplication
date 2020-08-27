@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const brfController = require('../controllers/BRF.controller.js');
+    const brfController = require('../controllers/Recipe.controller.js');
     app.post('/notes', brfController.create);
     app.get('/notes', brfController.findAll);
     app.get('/notes/:noteId', brfController.findOne);
