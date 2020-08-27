@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const middlewares = require('./app/middleware/middleware');
@@ -6,6 +7,7 @@ const dbConfig = require('./config/database.config.js');
 require('dotenv').config();
 
 const app = express();
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 

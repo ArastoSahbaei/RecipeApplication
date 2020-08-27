@@ -3,7 +3,7 @@ import service from '../shared/api/service/service'
 
 
 export const FirstComponent = () => {
-    const [data, setData] = useState("hehe")
+    const [data, setData] = useState("data.bio")
     return (
         <div>
             <button onClick={() => console.log(data)}>okok</button>
@@ -11,6 +11,7 @@ export const FirstComponent = () => {
                 setData(response)
             })}>
                 FirstComponent</button>
+
         </div>
     )
 }
