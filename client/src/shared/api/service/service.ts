@@ -1,9 +1,9 @@
 import http from "../api";
 
-const getAll = () => {
+const getAllRecipes = () => {
     return http.get("/mapbox");
 };
 
 export default {
-    getAll,
+    getAll: getAllRecipes,
 };
