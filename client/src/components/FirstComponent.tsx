@@ -7,7 +7,7 @@ export const FirstComponent = () => {
     return (
         <div>
             <button onClick={() => console.log(data)}>okok</button>
-            <button onClick={() => service.getAll().then((response: any) => {
+            <button onClick={() => service.getAllRecipes().then((response: any) => {
                 setData(response)
             })}>
                 FirstComponent</button>

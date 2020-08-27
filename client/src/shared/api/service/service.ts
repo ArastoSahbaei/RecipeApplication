@@ -5,5 +5,5 @@ const getAllRecipes = () => {
 };
 
 export default {
-    getAll: getAllRecipes,
+    getAllRecipes,
 };
