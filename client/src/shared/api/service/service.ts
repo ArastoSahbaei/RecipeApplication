@@ -1,7 +1,7 @@
 import http from "../api";
 
 const getAllRecipes = () => {
-    return http.get("/notes");
+    return http.get("/recipe");
 };
 
 export default {
