@@ -20,10 +20,15 @@ const updateRecipe = (id: any, updatedRecipe: object) => {
     return http.put(`/recipe/${id}`, updatedRecipe);
 };
 
+const searchService = (debounced: any, search?: any) => {
+    return http.get(`/recipe`)
+}
+
 export default {
     getAllRecipes,
     getRecipeById,
     deleteRecipeById,
     createRecipe,
-    updateRecipe
+    updateRecipe,
+    searchService
 };
