@@ -1,11 +1,12 @@
 import React from 'react';
 import { FirstComponent } from './components/FirstComponent'
+import { SearchRecipe } from './components/searchrecipe/SearchRecipe'
 
 function App() {
   return (
     <div className="App">
-      <FirstComponent />
-      <h1>Recipe Application</h1>
+      <SearchRecipe />
+      {/*  <FirstComponent /> */}
     </div>
   );
 }
