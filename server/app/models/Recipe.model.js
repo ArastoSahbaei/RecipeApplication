@@ -17,4 +17,4 @@ const schema = Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('brf', schema);
+module.exports = mongoose.model('recipe', schema);

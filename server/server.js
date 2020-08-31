@@ -22,10 +22,10 @@ mongoose.connect(dbConfig.DATABASE_URL, {
 });
 
 app.get('/', (req, res) => {
-    res.json({ "message": "brfSverige Application" });
+    res.json({ "message": "Recipe Application" });
 });
 
-require('./app/routes/BRF.routes.js')(app);
+require('./app/routes/Recipe.routes.js')(app);
 require('./app/routes/Users.routes.js')(app);
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);

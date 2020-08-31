@@ -43,18 +43,18 @@ exports.findOne = (req, res) => {
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "BRF not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.noteId
                 });
             }
             res.send(note);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "BRF not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.noteId
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving BRF with id " + req.params.noteId
+                message: "Error retrieving Recipe with id " + req.params.noteId
             });
         });
 };
@@ -67,24 +67,24 @@ exports.update = (req, res) => {
     }
 
     recipeModel.findByIdAndUpdate(req.params.noteId, {
-        title: req.body.title || "Untitled BRF",
+        title: req.body.title || "Untitled Recipe",
         content: req.body.content
     }, { new: true })
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "BRF not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.noteId
                 });
             }
             res.send(note);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "BRF not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.noteId
                 });
             }
             return res.status(500).send({
-                message: "Error updating BRF with id " + req.params.noteId
+                message: "Error updating Recipe with id " + req.params.noteId
             });
         });
 };
@@ -94,18 +94,18 @@ exports.delete = (req, res) => {
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "BRF not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.noteId
                 });
             }
-            res.send({ message: "BRF deleted successfully!" });
+            res.send({ message: "Recipe deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "BRF not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.noteId
                 });
             }
             return res.status(500).send({
-                message: "Could not delete BRF with id " + req.params.noteId
+                message: "Could not delete Recipe with id " + req.params.noteId
             });
         });
 };
