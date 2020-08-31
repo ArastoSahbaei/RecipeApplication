@@ -22,6 +22,7 @@ export const FirstComponent = () => {
                 GetMethod</button>
 
             <button onClick={() => service.createRecipe(theData)}> PostMethod</button>
+            <button onClick={() => service.updateRecipe("5f4a1766d386c816b8f17e2a", theData)}> UpdateMethod</button>
 
         </div>
     )

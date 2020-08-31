@@ -60,9 +60,9 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-    if (!req.body.brf) {
+    if (!req.body) {
         return res.status(400).send({
-            message: "BRF content can not be empty"
+            message: "Recipe content can not be empty"
         });
     }
 

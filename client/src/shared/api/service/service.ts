@@ -16,8 +16,8 @@ const createRecipe = (newRecipe: object) => {
     return http.post(`/recipe`, newRecipe);
 };
 
-const updateRecipe = (updatedRecipe: object) => {
-    return http.put(`/recipe/${updatedRecipe}`);
+const updateRecipe = (id: any, updatedRecipe: object) => {
+    return http.put(`/recipe/${id}`, updatedRecipe);
 };
 
 export default {
