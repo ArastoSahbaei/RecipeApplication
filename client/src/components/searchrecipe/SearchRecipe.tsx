@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from '../hooks/useDebounce'
 import service from '../../shared/api/service/service'
+import './SearchRecipe.css'
 
 export const SearchRecipe = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -24,15 +25,17 @@ export const SearchRecipe = () => {
     );
 
     return (
-        <div>
-            <h1>Le Chef</h1>
-            <input placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
-            {isSearching && <div>Searching ...</div>}
-            {results.map(recipeResult => (
-                <div key={recipeResult.id}>
-                    <h4>{recipeResult?.title}</h4>
-                </div>
-            ))}
+        <div className="searchRecipeContainer">
+            <div className="searchRecipeContent">
+                <h1>Le Chef</h1>
+                <input placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
+                {isSearching && <div>Searching ...</div>}
+                {results.map(recipeResult => (
+                    <div key={recipeResult._id}>
+                        <span>{recipeResult?.title} | {recipeResult?._id}</span>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
