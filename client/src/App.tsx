@@ -1,13 +1,13 @@
 import React from 'react';
 import './shared/design/Global.css'
-import { FirstComponent } from './components/FirstComponent'
+import Routing from "./components/routing/Routing"
 import { SearchRecipe } from './components/searchrecipe/SearchRecipe'
 
 function App() {
   return (
     <div className="App">
       <SearchRecipe />
-      {/*  <FirstComponent /> */}
+      <Routing />
     </div>
   );
 }
