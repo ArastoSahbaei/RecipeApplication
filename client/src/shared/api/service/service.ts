@@ -13,7 +13,7 @@ const deleteRecipeById = (recipeId: any) => {
 };
 
 const createRecipe = (newRecipe: object) => {
-    return http.post(`/recipe/${newRecipe}`);
+    return http.post(`/recipe`, newRecipe);
 };
 
 const updateRecipe = (updatedRecipe: object) => {
