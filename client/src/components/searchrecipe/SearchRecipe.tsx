@@ -26,8 +26,8 @@ export const SearchRecipe = () => {
         [debouncedSearchTerm]
     );
 
-    const directToRecipeView = (id: any) => {
-        return history.push(`/recipe/${id}`, []);
+    const directToRecipeView = (state: any) => {
+        return history.push(`/recipe/${state._id}`, state);
     }
 
     return (
@@ -38,7 +38,7 @@ export const SearchRecipe = () => {
                 {isSearching && <div>Searching ...</div>}
                 {results.map(recipeResult => (
                     <div key={recipeResult._id}>
-                        <span onClick={() => directToRecipeView(recipeResult?._id)}>{recipeResult?.title} | {recipeResult?._id}</span>
+                        <span onClick={() => directToRecipeView(recipeResult)}>{recipeResult?.title} | {recipeResult?._id}</span>
                     </div>
                 ))}
             </div>
