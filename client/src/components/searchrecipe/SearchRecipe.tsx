@@ -38,7 +38,7 @@ export const SearchRecipe = () => {
                 {isSearching && <div>Searching ...</div>}
                 {results.map(recipeResult => (
                     <div key={recipeResult._id}>
-                        <span onClick={() => directToRecipeView(recipeResult)}>{recipeResult?.title} | {recipeResult?._id}</span>
+                        <span onClick={() => directToRecipeView(recipeResult)}>{recipeResult?.title}</span>
                     </div>
                 ))}
             </div>

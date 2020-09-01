@@ -1,18 +1,41 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { RecipeInterface } from '../shared/interface/RecipeInterface'
+import service from '../shared/api/service/service'
 
 export const RecipeView = () => {
     const history = useHistory();
-    const [data, setData] = useState()
+    const params = useParams()
+    const [data, setData] = useState<any>()
+
+    const retrieveDataForRecipe = (recipeId?: string) => {
+        return service.getRecipeById(recipeId).then((response: any) => {
+            setData(response.data)
+        })
+    }
+
+    const setRecipeData = () => {
+        if (history.location.state) {
+            setData(history.location.state)
+        } else {
+            retrieveDataForRecipe()
+        }
+    }
 
     useEffect(() => {
-        setData(history?.location?.state)
-        return () => { }
+        setRecipeData()
     }, [history?.location?.state])
 
     return (
         <div>
-            <h1>Displaying Recipe: {data?._id}</h1>
+            <p>_id: {data?._id}</p>
+            <p>title: {data?.title}</p>
+            <p>duration: {data?.duration}</p>
+            <p>ingrediens: {data?.ingrediens}</p>
+            <p>description: {data?.description}</p>
+            <p>originCountry: {data?.originCountry}</p>
+            <p>language: {data?.language}</p>
+            <p>views: {data?.views}</p>
         </div>
     )
 }

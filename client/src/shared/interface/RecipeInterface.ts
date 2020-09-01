@@ -1,4 +1,5 @@
-export interface Recipe {
+export interface RecipeInterface {
+    _id: string,
     title: string,
     duration: number,
     ingrediens: [string],
