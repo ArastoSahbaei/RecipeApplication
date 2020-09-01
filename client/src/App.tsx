@@ -6,8 +6,9 @@ import { SearchRecipe } from './components/searchrecipe/SearchRecipe'
 function App() {
   return (
     <div className="App">
-      <SearchRecipe />
-      <Routing />
+      <Routing>
+         <SearchRecipe />
+      </Routing>
     </div>
   );
 }

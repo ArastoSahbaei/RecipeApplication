@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDebounce } from '../hooks/useDebounce'
+import { useHistory } from 'react-router-dom';
 import service from '../../shared/api/service/service'
 import './SearchRecipe.css'
 
 export const SearchRecipe = () => {
+    const history = useHistory();
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [results, setResults] = useState<any[]>([]);
     const [isSearching, setIsSearching] = useState(false);
@@ -24,6 +26,10 @@ export const SearchRecipe = () => {
         [debouncedSearchTerm]
     );
 
+    const directToRecipeView = (id: any) => {
+        return history.push(`/recipe/${id}`, []);
+    }
+
     return (
         <div className="searchRecipeContainer">
             <div className="searchRecipeContent">
@@ -32,7 +38,7 @@ export const SearchRecipe = () => {
                 {isSearching && <div>Searching ...</div>}
                 {results.map(recipeResult => (
                     <div key={recipeResult._id}>
-                        <span>{recipeResult?.title} | {recipeResult?._id}</span>
+                        <span onClick={() => directToRecipeView(recipeResult?._id)}>{recipeResult?.title} | {recipeResult?._id}</span>
                     </div>
                 ))}
             </div>
