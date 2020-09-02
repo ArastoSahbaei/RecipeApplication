@@ -17,13 +17,13 @@ export const CreateRecipeView = () => {
     return (
         <div>
             <h1>Create a new recipe</h1>
-            title<input></input> <br />
+            title <input value={data.title} onChange={e => setData({ ...data, title: e.target.value })} /> <br />
             duration<input></input> <br />
-            ingrediens<input></input> <br />
-            description<input></input> <br />
-            originCountry<input></input> <br />
-            language<input></input> <br />
-            <button onClick={() => service.createRecipe(data)}> PostMethod</button>
+            ingrediens <input value={data.ingrediens} onChange={e => setData({ ...data, ingrediens: e.target.value })} /> <br />
+            description <input value={data.description} onChange={e => setData({ ...data, description: e.target.value })} /> <br />
+            originCountry <input value={data.originCountry} onChange={e => setData({ ...data, originCountry: e.target.value })} /> <br />
+            language <input value={data.language} onChange={e => setData({ ...data, language: e.target.value })} /> <br />
+            <button onClick={() => service.createRecipe(data)}> Create Recipe </button>
         </div>
     )
 }
