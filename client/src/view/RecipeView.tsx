@@ -4,11 +4,11 @@ import { RecipeInterface } from '../shared/interface/RecipeInterface'
 import service from '../shared/api/service/service'
 
 export const RecipeView = () => {
-    const history = useHistory();
-    const params = useParams()
+    const history = useHistory()
+    const params = useParams<any>()
     const [data, setData] = useState<any>()
 
-    const retrieveDataForRecipe = (recipeId?: string) => {
+    const retrieveDataForRecipe = (recipeId: string) => {
         return service.getRecipeById(recipeId).then((response: any) => {
             setData(response.data)
         })
@@ -18,7 +18,7 @@ export const RecipeView = () => {
         if (history.location.state) {
             setData(history.location.state)
         } else {
-            retrieveDataForRecipe()
+            retrieveDataForRecipe(params.id)
         }
     }
 
