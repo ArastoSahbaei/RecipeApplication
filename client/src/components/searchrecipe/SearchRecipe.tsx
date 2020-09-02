@@ -33,7 +33,7 @@ export const SearchRecipe = () => {
     return (
         <div className="searchRecipeContainer">
             <div className="searchRecipeContent">
-                <h1>Le Chef</h1>
+                <h1 onClick={() => history.push(`/home`)}>Le Chef</h1>
                 <input placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
                 {isSearching && <div>Searching ...</div>}
                 {results.map(recipeResult => (
