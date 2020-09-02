@@ -1,10 +1,10 @@
 export interface RecipeInterface {
-    _id: string,
+    _id?: string,
     title: string,
     duration: number,
-    ingrediens: [string],
+    ingrediens?: string,
     description: string,
     originCountry: string,
     language: string,
-    views: number
+    views?: number
 }
