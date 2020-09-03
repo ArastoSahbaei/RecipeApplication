@@ -2,14 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = Schema({
-    username: {
-        type: String,
-        unique: true,
-        lowercase: true,
-        required: [true, "can't be blank"],
-        match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
-        index: true
-    },
     email: {
         type: String,
         unique: true,
