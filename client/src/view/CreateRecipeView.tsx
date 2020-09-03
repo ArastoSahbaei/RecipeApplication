@@ -3,8 +3,8 @@ import service from '../shared/api/service/service'
 import { RecipeInterface } from '../shared/interface/RecipeInterface'
 
 export const CreateRecipeView = () => {
+    const userId = "5f50cb550534c6129c4d8da5"
     const [data, setData] = useState<RecipeInterface>({
-        _id: "",
         title: "string",
         duration: 234,
         ingrediens: "string",
@@ -23,7 +23,7 @@ export const CreateRecipeView = () => {
             description <input onChange={e => setData({ ...data, description: e.target.value })} /> <br />
             originCountry <input onChange={e => setData({ ...data, originCountry: e.target.value })} /> <br />
             language <input onChange={e => setData({ ...data, language: e.target.value })} /> <br />
-            <button onClick={() => service.createRecipe(data)}> Create Recipe </button>
+            <button onClick={() => service.createRecipeByUserId(userId, data)}> Create Recipe </button>
         </div>
     )
 }

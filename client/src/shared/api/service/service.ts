@@ -12,8 +12,8 @@ const deleteRecipeById = (recipeId: any) => {
     return http.delete(`/recipe/${recipeId}`);
 };
 
-const createRecipe = (newRecipe: object) => {
-    return http.post(`/recipe`, newRecipe);
+const createRecipeByUserId = (userId: string, newRecipe: object) => {
+    return http.post(`/${userId}/recipe`, newRecipe);
 };
 
 const updateRecipe = (id: any, updatedRecipe: object) => {
@@ -28,7 +28,7 @@ export default {
     getAllRecipes,
     getRecipeById,
     deleteRecipeById,
-    createRecipe,
+    createRecipeByUserId,
     updateRecipe,
     searchService
 };
