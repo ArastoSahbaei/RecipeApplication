@@ -30,10 +30,10 @@ exports.create = async (req, res) => {
         });
 };
 
-exports.findAll = (req, res) => {
-    UserModel.find()
-        .then(notes => {
-            res.send(notes);
+exports.findAll = async (req, res, next) => {
+    await UserModel.find()
+        .then(response => {
+            res.send(response);
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while retrieving User."
@@ -56,7 +56,6 @@ exports.newUserRecipe = async (req, res, next) => {
     user.createdRecipes.push(newRecipe)
     await user.save()
     res.status(201).json(newRecipe)
-
 }
 
 exports.login = async (req, res) => {
