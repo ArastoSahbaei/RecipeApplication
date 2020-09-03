@@ -1,4 +1,5 @@
 const UserModel = require('../models/Users.model.js');
+const RecipeModel = require('../models/Recipe.model')
 const bcrypt = require('bcrypt')
 
 exports.create = async (req, res) => {
@@ -39,6 +40,24 @@ exports.findAll = (req, res) => {
             });
         });
 };
+
+exports.getUserRecipes = async (req, res, next) => {
+    const { userId } = req.params
+    const user = await UserModel.findById(userId).populate('recipe')
+    res.status(200).json(user.recipe)
+}
+
+exports.newUserRecipe = async (req, res, next) => {
+    const { userId } = req.params
+    const newRecipe = new RecipeModel(req.body)
+    const user = await UserModel.findById(userId)
+    newRecipe.user = user
+    await newRecipe.save()
+    user.recipe.push(newRecipe)
+    await user.save()
+    res.status(201).json(newRecipe)
+
+}
 
 exports.login = async (req, res) => {
     const users = [
