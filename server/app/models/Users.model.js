@@ -20,7 +20,7 @@ const UserSchema = Schema({
     },
     recipe: [{
         type: Schema.Types.ObjectId,
-        red: "recipe"
+        ref: "recipe"
     }],
     password: String,
     bio: String,

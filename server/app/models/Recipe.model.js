@@ -11,7 +11,7 @@ const schema = Schema({
     views: Number,
     leUsers: [{
         type: Schema.Types.ObjectId,
-        red: "User"
+        ref: "User"
     }]
 }, {
     timestamps: true

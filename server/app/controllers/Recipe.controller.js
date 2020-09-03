@@ -39,22 +39,22 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    recipeModel.findById(req.params.noteId)
+    recipeModel.findById(req.params.recipeId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "Recipe not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.recipeId
                 });
             }
             res.send(note);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Recipe not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.recipeId
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving Recipe with id " + req.params.noteId
+                message: "Error retrieving Recipe with id " + req.params.recipeId
             });
         });
 };
@@ -66,46 +66,46 @@ exports.update = (req, res) => {
         });
     }
 
-    recipeModel.findByIdAndUpdate(req.params.noteId, {
+    recipeModel.findByIdAndUpdate(req.params.recipeId, {
         title: req.body.title || "Untitled Recipe",
         content: req.body.content
     }, { new: true })
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "Recipe not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.recipeId
                 });
             }
             res.send(note);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Recipe not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.recipeId
                 });
             }
             return res.status(500).send({
-                message: "Error updating Recipe with id " + req.params.noteId
+                message: "Error updating Recipe with id " + req.params.recipeId
             });
         });
 };
 
 exports.delete = (req, res) => {
-    recipeModel.findByIdAndRemove(req.params.noteId)
+    recipeModel.findByIdAndRemove(req.params.recipeId)
         .then(note => {
             if (!note) {
                 return res.status(404).send({
-                    message: "Recipe not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.recipeId
                 });
             }
             res.send({ message: "Recipe deleted successfully!" });
         }).catch(err => {
             if (err.kind === 'ObjectId' || err.name === 'NotFound') {
                 return res.status(404).send({
-                    message: "Recipe not found with id " + req.params.noteId
+                    message: "Recipe not found with id " + req.params.recipeId
                 });
             }
             return res.status(500).send({
-                message: "Could not delete Recipe with id " + req.params.noteId
+                message: "Could not delete Recipe with id " + req.params.recipeId
             });
         });
 };
