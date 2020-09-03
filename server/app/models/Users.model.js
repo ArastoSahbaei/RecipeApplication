@@ -18,7 +18,7 @@ const userSchema = Schema({
         match: [/\S+@\S+\.\S+/, 'is invalid'],
         index: true
     },
-    recipe: [{
+    createdRecipes: [{
         type: Schema.Types.ObjectId,
         ref: "recipe"
     }],

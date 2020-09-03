@@ -43,17 +43,17 @@ exports.findAll = (req, res) => {
 
 exports.getUserRecipes = async (req, res, next) => {
     const { userId } = req.params
-    const user = await UserModel.findById(userId).populate('recipe')
-    res.status(200).json(user.recipe)
+    const user = await UserModel.findById(userId).populate('createdRecipes')
+    res.status(200).json(user.createdRecipes)
 }
 
 exports.newUserRecipe = async (req, res, next) => {
     const { userId } = req.params
     const newRecipe = new RecipeModel(req.body)
     const user = await UserModel.findById(userId)
-    newRecipe.user = user
+    newRecipe.createdByUser = user
     await newRecipe.save()
-    user.recipe.push(newRecipe)
+    user.createdRecipes.push(newRecipe)
     await user.save()
     res.status(201).json(newRecipe)
 
