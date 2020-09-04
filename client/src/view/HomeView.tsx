@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import service from '../shared/api/service/service'
 import { useHistory } from "react-router-dom";
 
-export const FirstComponent = () => {
+export const HomeView = () => {
 
     const routeChange = () => {
         let path = `/create`;
@@ -18,8 +18,6 @@ export const FirstComponent = () => {
                 setData(response)
             })}>
                 GetMethod</button>
-
-            {/* <button onClick={() => service.updateRecipe("5f4a1766d386c816b8f17e2a", theData)}> UpdateMethod</button> */}
             <button onClick={() => routeChange()}>Create New Recipe</button>
 
         </div>
