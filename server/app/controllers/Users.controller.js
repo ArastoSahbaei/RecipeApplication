@@ -3,7 +3,7 @@ const RecipeModel = require('../models/Recipe.model')
 const bcrypt = require('bcrypt')
 
 exports.create = async (req, res) => {
-    if (!req.body.username) {
+    if (!req.body.email) {
         return res.status(400).send({
             message: "User must contain data"
         });
@@ -11,7 +11,6 @@ exports.create = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
     const user = new UserModel({
-        username: req.body.username,
         email: req.body.email,
         password: hashedPassword,
         bio: req.body.bio,
