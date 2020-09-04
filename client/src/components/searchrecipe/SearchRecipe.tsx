@@ -38,17 +38,19 @@ export const SearchRecipe = () => {
     return (
         <div className="searchRecipeContainer">
             <div className="searchRecipeContent">
-                <input placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
+                <input className="searchInput" placeholder="Search Recipe" onChange={e => setSearchTerm(e.target.value)} />
                 {isSearching && <div>Searching ...</div>}
-                {results.map(recipeResult => (
-                    <div key={recipeResult._id} onClick={() => directToRecipeView(recipeResult)}>
-                        <img src={foodImg} alt={"Error"} style={{ width: 50, height: 50 }} />
-                        <h3 >{recipeResult?.title}</h3>
-                        <p>Arasto Sahbaei</p>
-                        <p>{getRandomArbitrary(1, 10)}/10</p>
-                        <hr />
-                    </div>
-                ))}
+                <div className="dropdown-content">
+                    {results.map(recipeResult => (
+                        <div className="dropdown-value" key={recipeResult._id} onClick={() => directToRecipeView(recipeResult)}>
+                            <img src={foodImg} alt={"Error"} style={{ width: 50, height: 50 }} />
+                            <h3 >{recipeResult?.title}</h3>
+                            <p>Arasto Sahbaei</p>
+                            <p>{getRandomArbitrary(1, 10)}/10</p>
+                            <hr />
+                        </div>
+                    ))}
+                </div>
                 {/* <p>See all results for "{searchTerm}"</p> */}
             </div>
         </div>
