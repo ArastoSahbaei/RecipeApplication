@@ -1,15 +1,13 @@
 import React from 'react';
 import './shared/design/Global.css'
-import Routing from "./components/routing/Routing"
-import { SearchRecipe } from './components/searchrecipe/SearchRecipe'
+import Routing from "./routes/Routing"
+import { NavigationBar } from './components/navigationbar/NavigationBar'
 
 function App() {
   return (
-    <div className="App">
-      <Routing>
-         <SearchRecipe />
-      </Routing>
-    </div>
+    <Routing>
+      <NavigationBar />
+    </Routing>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
-import { RecipeInterface } from '../shared/interface/RecipeInterface'
 import service from '../shared/api/service/service'
 
 export const RecipeView = () => {
