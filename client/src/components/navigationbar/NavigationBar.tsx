@@ -8,9 +8,11 @@ export const NavigationBar = () => {
 
     return (
         <div className="navigationBar">
-            <SearchRecipe />
-            <h1 onClick={() => history.push(`/home`)}>Mondial Chef</h1>
-            <h4 onClick={() => history.push(`/signin`)}> Sign in</h4>
+            <span className="mondialChef" onClick={() => history.push(`/home`)}>Mondial Chef</span>
+            <div className="searchBar">
+                <SearchRecipe />
+            </div>
+            <span className="signIn" onClick={() => history.push(`/signin`)}> Sign in</span>
         </div>
     )
 }

@@ -1,4 +1,18 @@
 .navigationBar {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
     width: 100%;
     background-color: orange;
+}
+
+.mondialChef {
+    grid-column: 2/4;
+}
+
+.searchBar {
+    grid-column: 4/7;
+}
+
+.signIn {
+    grid-column: 8/10;
 }
