@@ -13,4 +13,5 @@
 .dropdown-value:hover {
     transition: 0.5s;
     background-color: #d1d1d1;
+    cursor: pointer;
 }
