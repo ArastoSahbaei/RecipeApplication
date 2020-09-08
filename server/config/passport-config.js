@@ -18,16 +18,12 @@ passport.use(
         (username, password, done) => {
             console.log("ATTEMPTING PASSPORT:", username)
             try {
-                UserModel.findOne({
-                    where: { username: username },
-                })
+                UserModel.findOne({ where: { username: username } })
                     .then(user => {
                         if (user != null) {
-                            console.log('username already taken');
                             return done(null, false, { message: 'username already taken' });
                         } else {
                             bcrypt.hash(password, BCRYPT_SALT_ROUNDS).then(hashedPassword => {
-                                console.log("THIS IS THE USERNAME DUDE", username)
                                 UserModel.create({ username: username, password: hashedPassword })
                                     .then(user => {
                                         console.log('user created');
@@ -50,30 +46,30 @@ passport.use(
         {
             usernameField: 'username',
             passwordField: 'password',
-            emailField: 'email',
             session: false,
         },
         (username, password, done) => {
+            console.log("username:", username)
+            console.log("password:", password)
+            console.log("LOOOL")
             try {
-                User.findOne({
-                    where: {
-                        username: username,
-                    },
-                }).then(user => {
-                    if (user === null) {
-                        return done(null, false, { message: 'bad username' });
-                    } else {
-                        bcrypt.compare(password, user.password).then(response => {
-                            if (response !== true) {
-                                console.log('passwords do not match');
-                                return done(null, false, { message: 'passwords do not match' });
-                            }
-                            console.log('user found & authenticated');
-                            // note the return needed with passport local - remove this return for passport JWT
-                            done(null, user);
-                        });
-                    }
-                });
+                UserModel.findOne({ username: username })
+                    .then(user => {
+                        if (user === null) {
+                            return done(null, false, { message: 'bad username' });
+                        } else {
+                            bcrypt.compare(password, user.password)
+                                .then(response => {
+                                    if (response !== true) {
+                                        console.log('passwords do not match');
+                                        return done(null, false, { message: 'passwords do not match' });
+                                    }
+                                    console.log('user found & authenticated');
+                                    // note the return needed with passport local - remove this return for passport JWT
+                                    done(null, user);
+                                });
+                        }
+                    });
             } catch (err) {
                 done(err);
             }
@@ -90,20 +86,17 @@ passport.use(
     'jwt',
     new JWTstrategy(opts, (jwt_payload, done) => {
         try {
-            User.findOne({
-                where: {
-                    username: jwt_payload.id,
-                },
-            }).then(user => {
-                if (user) {
-                    console.log('user found in db in passport');
-                    // note the return removed with passport JWT - add this return for passport local
-                    done(null, user);
-                } else {
-                    console.log('user not found in db');
-                    done(null, false);
-                }
-            });
+            User.findOne({ username: jwt_payload.id })
+                .then(user => {
+                    if (user) {
+                        console.log('user found in db in passport');
+                        // note the return removed with passport JWT - add this return for passport local
+                        done(null, user);
+                    } else {
+                        console.log('user not found in db');
+                        done(null, false);
+                    }
+                });
         } catch (err) {
             done(err);
         }
