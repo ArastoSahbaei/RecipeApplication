@@ -30,7 +30,7 @@ module.exports = app => {
                                 username: data.username,
                             }).then(() => {
                                 console.log('user created in db');
-                                res.status(200).send({ message: 'user created' });
+                                res.status(200).send({ message: 'User was successfully created' });
                             });
                         });
                 });

@@ -32,6 +32,7 @@ mongoose.connect(dbConfig.DATABASE_URL, {
 require('./app/routes/Recipe.routes.js')(app);
 require('./app/routes/Users.routes.js')(app);
 require('./app/routes/registerUser.js')(app)
+require('./app/routes/loginUser.js')(app)
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
