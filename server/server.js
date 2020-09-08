@@ -4,12 +4,20 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const middlewares = require('./app/middleware/middleware');
 const dbConfig = require('./config/database.config.js');
+const session = require('express-session')
+const passport = require('passport')
+const cookieParser = require('cookie-parser')
+const app = express();
+require('./config/passport-config');
 require('dotenv').config();
 
-const app = express();
-app.use(cors())
+app.use(cors({ credentials: true }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(cookieParser("process.env.SESSION_SECRET"))
+app.use(passport.initialize())
+/* app.use(passport.session()) */
+/* require('./config/passport-config')(passport) */
 
 mongoose.connect(dbConfig.DATABASE_URL, {
     useNewUrlParser: true,
@@ -21,12 +29,9 @@ mongoose.connect(dbConfig.DATABASE_URL, {
     process.exit();
 });
 
-app.get('/', (req, res) => {
-    res.json({ "message": "Recipe Application" });
-});
-
 require('./app/routes/Recipe.routes.js')(app);
 require('./app/routes/Users.routes.js')(app);
+require('./app/routes/registerUser.js')(app)
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
