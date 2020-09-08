@@ -3,7 +3,7 @@ const UserModel = require('../models/Users.model')
 
 
 module.exports = app => {
-    app.post('/registerUser', (req, res, next) => {
+    app.post('/user/register', (req, res, next) => {
         passport.authenticate('register', (err, user, info) => {
             console.log("LOOOL", user)
             if (err) { console.error(err); }

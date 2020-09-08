@@ -3,7 +3,7 @@ const passport = require('passport')
 const UserModel = require('../models/Users.model')
 
 module.exports = app => {
-    app.post('/loginUser', (req, res, next) => {
+    app.post('/user/login', (req, res, next) => {
         passport.authenticate('login', (err, users, info) => {
             if (err) { console.error(`error ${err}`); }
             if (info !== undefined) {
