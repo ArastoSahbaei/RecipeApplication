@@ -21,13 +21,13 @@ module.exports = app => {
                         username: req.body.username
                     };
                     console.log(data);
-                    UserModel.findOne({ where: { username: username } })
+                    UserModel.findOne({ where: data.username })
                         .then(user => {
                             console.log("THIS IS LE USER:", user);
-                            user.update({
+                            UserModel.update({
                                 first_name: data.first_name,
                                 last_name: data.last_name,
-                                username: username,
+                                username: data.username,
                             }).then(() => {
                                 console.log('user created in db');
                                 res.status(200).send({ message: 'user created' });
