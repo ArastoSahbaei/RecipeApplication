@@ -9,13 +9,13 @@ export const SignInView = () => {
     const [loginPassword, setLoginPassword] = useState('')
 
     const registerNewUser = () => {
-        UserService.registerNewUser({ email: "eoerk@ork.com", password: "lols" })
+        UserService.registerNewUser({ username: "eoerk@ork.com", password: "lols" })
             .then(response => console.log(response))
             .catch(error => console.log(error))
     }
 
     const login = () => {
-        UserService.login({ email: "eoerk@ork.com", password: " lols" })
+        UserService.login({ username: "arrerwerweerwrweee", password: "parrerereword" })
             .then(response => console.log(response))
             .catch(error => console.log(error))
     }
