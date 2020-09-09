@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import UserService from '../shared/api/service/UserService'
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
+import { UserContext } from '../UserContext'
 
 export const SignInView = () => {
     const [registeredUsername, setRegisteredUsername] = useState('')
     const [registeredPassword, setRegisteredPassword] = useState('')
     const [loginUsername, setLoginUsername] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
+    const [cart, setCart] = useContext(UserContext);
     const history = useHistory();
 
     const registerNewUser = () => {
@@ -23,6 +25,7 @@ export const SignInView = () => {
     const serverResponse = (serverResponse: any) => {
         console.log(serverResponse)
         localStorage.setItem('JWT', serverResponse.data.token)
+        setCart(serverResponse.data)
         routeChange()
     }
 
