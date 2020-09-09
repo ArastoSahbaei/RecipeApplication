@@ -15,15 +15,15 @@ module.exports = app => {
                 }
             } else {
                 req.logIn(users, () => {
-                    console.log("OMGOMGOMGOMGOMGOMGOMG", users)
                     UserModel.findOne({ username: req.body.username })
                         .then(user => {
                             console.log("THIS IS THE USER:", user)
-                            const token = jwt.sign({ id: user.id }, "jwtSecret.secret", { expiresIn: 60 * 60 });
+                            const token = jwt.sign({ id: user._id }, "jwtSecret.secret", { expiresIn: 60 * 60 });
                             res.status(200).send({
                                 auth: true,
                                 token,
                                 message: 'user found & logged in',
+                                id: user._id
                             });
                         })
                 });

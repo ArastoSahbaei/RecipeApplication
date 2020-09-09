@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import UserService from '../shared/api/service/UserService'
+import { useHistory } from "react-router-dom";
 
 export const SignInView = () => {
     const [registeredUsername, setRegisteredUsername] = useState('')
     const [registeredPassword, setRegisteredPassword] = useState('')
     const [loginUsername, setLoginUsername] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
+    const history = useHistory();
 
     const registerNewUser = () => {
         UserService.registerNewUser({ username: "eoerk@ork.com", password: "lols" })
@@ -14,9 +15,20 @@ export const SignInView = () => {
             .catch(error => console.log(error))
     }
 
+    const routeChange = () => {
+        let path = `/home`;
+        history.push(path);
+    }
+
+    const serverResponse = (serverResponse: any) => {
+        console.log(serverResponse)
+        localStorage.setItem('JWT', serverResponse.data.token)
+        routeChange()
+    }
+
     const login = () => {
-        UserService.login({ username: "arrerwerweerwrweee", password: "parrerereword" })
-            .then(response => console.log(response))
+        UserService.login({ username: "arrezz", password: "arrezz" })
+            .then(response => serverResponse(response))
             .catch(error => console.log(error))
     }
 

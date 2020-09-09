@@ -12,7 +12,6 @@ passport.use(
         {
             usernameField: 'username',
             passwordField: 'password',
-            emailField: 'email',
             session: false,
         },
         (username, password, done) => {
@@ -49,9 +48,6 @@ passport.use(
             session: false,
         },
         (username, password, done) => {
-            console.log("username:", username)
-            console.log("password:", password)
-            console.log("LOOOL")
             try {
                 UserModel.findOne({ username: username })
                     .then(user => {
@@ -64,7 +60,7 @@ passport.use(
                                         console.log('passwords do not match');
                                         return done(null, false, { message: 'passwords do not match' });
                                     }
-                                    console.log('user found & authenticated');
+                                    console.log('user found & authenticated:', user);
                                     // note the return needed with passport local - remove this return for passport JWT
                                     done(null, user);
                                 });
