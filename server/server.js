@@ -33,6 +33,7 @@ require('./app/routes/Recipe.routes.js')(app);
 require('./app/routes/Users.routes.js')(app);
 require('./app/routes/registerUser.js')(app)
 require('./app/routes/loginUser.js')(app)
+require('./app/routes/findUsers.js')(app)
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
