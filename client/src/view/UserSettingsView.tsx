@@ -1,10 +1,9 @@
 import React from 'react'
 
-export const HomeView = () => {
+export const UserSettingsView = () => {
     return (
         <div>
-            <h1>Home Page</h1>
+            <h1>Settings:</h1>
         </div>
     )
 }
-

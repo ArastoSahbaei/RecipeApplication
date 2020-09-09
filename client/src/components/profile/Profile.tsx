@@ -11,15 +11,21 @@ export const Profile = () => {
         history.push(direction)
     }
 
+    const logout = () => {
+        localStorage.removeItem('JWT')
+        setUser({})
+        history.push('/home')
+    }
+
     return (
         <div>
             <div className="dropdown">
                 <span>{user.id}</span>
                 <div className="dropdown-content">
-                    <a onClick={() => reDirect('./home')}>My recipes</a>
-                    <a onClick={() => reDirect('./home')}>Settings</a>
+                    <a onClick={() => reDirect('./recipes')}>Recipes</a>
+                    <a onClick={() => reDirect('./settings')}>Settings</a>
                     <hr />
-                    <a onClick={() => reDirect('./home')}>Logout</a>
+                    <a onClick={() => logout()}>Logout</a>
                 </div>
             </div>
         </div>
