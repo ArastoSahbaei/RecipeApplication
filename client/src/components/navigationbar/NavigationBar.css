@@ -15,4 +15,5 @@
 
 .signIn {
     grid-column: 8/10;
+    cursor: pointer;
 }
