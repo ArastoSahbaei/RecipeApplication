@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React, { Suspense, useContext, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { HomeView } from '../view/HomeView'
 import { RecipeView } from '../view/RecipeView'
@@ -6,8 +6,25 @@ import { CreateRecipeView } from '../view/CreateRecipeView'
 import { SignInView } from '../view/SignInView'
 import { UserRecipesView } from '../view/UserRecipesView'
 import { UserSettingsView } from '../view/UserSettingsView'
+import { UserContext } from '../UserContext'
 
 export default function Routing(props: any) {
+
+    const [user, setUser] = useContext(UserContext)
+
+    const parseJWT = (token: any) => {
+        if (!token) { return; }
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        const jwtToken = JSON.parse(window.atob(base64));
+        setUser({ auth: true, id: jwtToken.id })
+    }
+
+    useEffect(() => {
+        parseJWT(localStorage.getItem('JWT'))
+        return () => { }
+    }, [])
+
     return (
         <Router>
             {props.children}
