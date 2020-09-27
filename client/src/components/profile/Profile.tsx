@@ -19,9 +19,9 @@ export const Profile = () => {
 
     return (
         <div>
-            <div className="dropdown">
+            <div className="profile-dropdown">
                 <span>{user.id}</span>
-                <div className="dropdown-content">
+                <div className="profile-dropdown-content">
                     <a onClick={() => reDirect('./recipes')}>Recipes</a>
                     <a onClick={() => reDirect('./settings')}>Settings</a>
                     <hr />
