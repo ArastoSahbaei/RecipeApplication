@@ -10,9 +10,9 @@
 
  <h1 align="center"> :star2: Team </h1>
 
- <p align="center">
-
+ <p align="center"> 
  Arasto Sahbaei, co-founder & developer <br />
+ </p>
 
 <hr>
 
