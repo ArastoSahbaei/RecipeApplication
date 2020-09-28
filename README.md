@@ -14,10 +14,6 @@
 
  Arasto Sahbaei, co-founder & developer <br />
 
- Marcin Retek, co-founder & developer </p>
-
-
-
 <hr>
 
  <h1 align="center"> :love_letter: Contact </h1>
